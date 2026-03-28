@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:MusicDiscovery.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/AppCore">
+   </FileRef>
+   <FileRef
+      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/Models">
+   </FileRef>
+   <FileRef
+      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/iTunesAPI">
+   </FileRef>
+   <FileRef
+      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/NetworkService">
+   </FileRef>
+</Workspace>
