@@ -6,6 +6,7 @@ let package = Package(
     name: "NetworkService",
     platforms: [
         .iOS(.v26),
+        .macOS(.v15),
     ],
     products: [
         .library(
