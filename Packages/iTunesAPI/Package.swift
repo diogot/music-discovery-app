@@ -6,6 +6,7 @@ let package = Package(
     name: "iTunesAPI",
     platforms: [
         .iOS(.v26),
+        .macOS(.v15),
     ],
     products: [
         .library(
@@ -28,6 +29,9 @@ let package = Package(
             dependencies: [
                 "iTunesAPI",
                 .product(name: "NetworkServiceTestUtils", package: "NetworkService"),
+            ],
+            resources: [
+                .copy("Fixtures"),
             ]
         ),
     ]

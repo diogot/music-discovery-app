@@ -1,0 +1,53 @@
+{
+  "resultCount": 3,
+  "results": [
+    {
+      "wrapperType": "collection",
+      "collectionId": 1440935413,
+      "collectionName": "A Night At the Opera (Deluxe Remastered Version)",
+      "artistName": "Queen",
+      "artistId": 3296287,
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/queen100.jpg",
+      "trackCount": 17,
+      "releaseDate": "1975-10-31T07:00:00Z",
+      "primaryGenreName": "Rock",
+      "copyright": "℗ 2011 Hollywood Records, Inc."
+    },
+    {
+      "wrapperType": "track",
+      "trackId": 1440935467,
+      "trackName": "Bohemian Rhapsody",
+      "artistName": "Queen",
+      "artistId": 3296287,
+      "collectionId": 1440935413,
+      "collectionName": "A Night At the Opera (Deluxe Remastered Version)",
+      "trackNumber": 11,
+      "trackCount": 17,
+      "discNumber": 1,
+      "discCount": 1,
+      "trackTimeMillis": 354947,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bohemian.m4a",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/queen100.jpg",
+      "releaseDate": "1975-10-31T07:00:00Z",
+      "primaryGenreName": "Rock"
+    },
+    {
+      "wrapperType": "track",
+      "trackId": 1440935468,
+      "trackName": "Love of My Life",
+      "artistName": "Queen",
+      "artistId": 3296287,
+      "collectionId": 1440935413,
+      "collectionName": "A Night At the Opera (Deluxe Remastered Version)",
+      "trackNumber": 9,
+      "trackCount": 17,
+      "discNumber": 1,
+      "discCount": 1,
+      "trackTimeMillis": 219773,
+      "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/love.m4a",
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/queen100.jpg",
+      "releaseDate": "1975-10-31T07:00:00Z",
+      "primaryGenreName": "Rock"
+    }
+  ]
+}
