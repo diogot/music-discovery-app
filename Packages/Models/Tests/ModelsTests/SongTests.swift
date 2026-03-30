@@ -22,8 +22,8 @@ struct SongTests {
             discCount: 1,
             trackCount: 13,
             trackTimeMillis: 369_000,
-            previewURLString: "https://example.com/preview.m4a",
-            artworkURLString: "https://example.com/100x100bb.jpg",
+            previewURL: URL(string: "https://example.com/preview.m4a"),
+            artworkURL: URL(string: "https://example.com/100x100bb.jpg"),
             releaseDate: date,
             genre: "Electronic",
             lastPlayedAt: playedAt,
@@ -41,8 +41,8 @@ struct SongTests {
         #expect(song.discCount == 1)
         #expect(song.trackCount == 13)
         #expect(song.trackTimeMillis == 369_000)
-        #expect(song.previewURLString == "https://example.com/preview.m4a")
-        #expect(song.artworkURLString == "https://example.com/100x100bb.jpg")
+        #expect(song.previewURL == URL(string: "https://example.com/preview.m4a"))
+        #expect(song.artworkURL == URL(string: "https://example.com/100x100bb.jpg"))
         #expect(song.releaseDate == date)
         #expect(song.genre == "Electronic")
         #expect(song.lastPlayedAt == playedAt)
@@ -65,8 +65,8 @@ struct SongTests {
         #expect(song.discCount == 1)
         #expect(song.trackCount == 0)
         #expect(song.trackTimeMillis == nil)
-        #expect(song.previewURLString == nil)
-        #expect(song.artworkURLString == nil)
+        #expect(song.previewURL == nil)
+        #expect(song.artworkURL == nil)
         #expect(song.releaseDate == nil)
         #expect(song.genre == nil)
         #expect(song.lastPlayedAt == nil)
@@ -88,42 +88,28 @@ struct SongTests {
         #expect(song.durationSeconds == nil)
     }
 
-    @Test("previewURL parses valid string")
+    @Test("previewURL stores value")
     func previewURLValid() {
-        let song = makeSong(previewURLString: "https://example.com/preview.m4a")
+        let song = makeSong(previewURL: URL(string: "https://example.com/preview.m4a"))
 
         #expect(song.previewURL?.absoluteString == "https://example.com/preview.m4a")
     }
 
-    @Test("previewURL returns nil when no string")
+    @Test("previewURL defaults to nil")
     func previewURLNil() {
         let song = makeSong()
 
         #expect(song.previewURL == nil)
     }
 
-    @Test("artworkThumbnailURL parses valid string")
-    func artworkThumbnailValid() {
-        let song = makeSong(artworkURLString: "https://example.com/100x100bb.jpg")
-
-        #expect(song.artworkThumbnailURL?.absoluteString == "https://example.com/100x100bb.jpg")
-    }
-
-    @Test("artworkThumbnailURL returns nil when no string")
-    func artworkThumbnailNil() {
-        let song = makeSong()
-
-        #expect(song.artworkThumbnailURL == nil)
-    }
-
     @Test("artworkLargeURL derives 600x600")
     func artworkLargeDerivesSize() {
-        let song = makeSong(artworkURLString: "https://example.com/100x100bb.jpg")
+        let song = makeSong(artworkURL: URL(string: "https://example.com/100x100bb.jpg"))
 
         #expect(song.artworkLargeURL?.absoluteString == "https://example.com/600x600bb.jpg")
     }
 
-    @Test("artworkLargeURL returns nil when no string")
+    @Test("artworkLargeURL returns nil when no URL")
     func artworkLargeNil() {
         let song = makeSong()
 
@@ -135,8 +121,8 @@ struct SongTests {
 
 private func makeSong(
     trackTimeMillis: Int? = nil,
-    previewURLString: String? = nil,
-    artworkURLString: String? = nil
+    previewURL: URL? = nil,
+    artworkURL: URL? = nil
 ) -> Song {
     Song(
         trackId: 1,
@@ -146,7 +132,7 @@ private func makeSong(
         collectionId: 3,
         collectionName: "Album",
         trackTimeMillis: trackTimeMillis,
-        previewURLString: previewURLString,
-        artworkURLString: artworkURLString
+        previewURL: previewURL,
+        artworkURL: artworkURL
     )
 }

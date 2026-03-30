@@ -26,7 +26,7 @@ struct CollectionDTOTests {
         #expect(collection.collectionName == "A Night At the Opera")
         #expect(collection.artistName == "Queen")
         #expect(collection.artistId == 3296287)
-        #expect(collection.artworkUrl100 == "https://example.com/artwork.jpg")
+        #expect(collection.artworkUrl100 == URL(string: "https://example.com/artwork.jpg"))
         #expect(collection.trackCount == 17)
         #expect(collection.releaseDate == "1975-10-31T07:00:00Z")
         #expect(collection.primaryGenreName == "Rock")

@@ -15,7 +15,7 @@ struct AlbumTests {
             artistName: "Daft Punk",
             artistId: 456,
             trackCount: 13,
-            artworkURLString: "https://example.com/100x100bb.jpg",
+            artworkURL: URL(string: "https://example.com/100x100bb.jpg"),
             releaseDate: date,
             genre: "Electronic",
             copyright: "℗ 2013 Daft Life Limited"
@@ -26,7 +26,7 @@ struct AlbumTests {
         #expect(album.artistName == "Daft Punk")
         #expect(album.artistId == 456)
         #expect(album.trackCount == 13)
-        #expect(album.artworkURLString == "https://example.com/100x100bb.jpg")
+        #expect(album.artworkURL == URL(string: "https://example.com/100x100bb.jpg"))
         #expect(album.releaseDate == date)
         #expect(album.genre == "Electronic")
         #expect(album.copyright == "℗ 2013 Daft Life Limited")
@@ -42,35 +42,10 @@ struct AlbumTests {
         )
 
         #expect(album.trackCount == 0)
-        #expect(album.artworkURLString == nil)
+        #expect(album.artworkURL == nil)
         #expect(album.releaseDate == nil)
         #expect(album.genre == nil)
         #expect(album.copyright == nil)
-    }
-
-    @Test("artworkThumbnailURL parses valid string")
-    func artworkThumbnailValid() {
-        let album = Album(
-            collectionId: 1,
-            collectionName: "Test",
-            artistName: "Artist",
-            artistId: 2,
-            artworkURLString: "https://example.com/100x100bb.jpg"
-        )
-
-        #expect(album.artworkThumbnailURL?.absoluteString == "https://example.com/100x100bb.jpg")
-    }
-
-    @Test("artworkThumbnailURL returns nil when no string")
-    func artworkThumbnailNil() {
-        let album = Album(
-            collectionId: 1,
-            collectionName: "Test",
-            artistName: "Artist",
-            artistId: 2
-        )
-
-        #expect(album.artworkThumbnailURL == nil)
     }
 
     @Test("artworkLargeURL derives 600x600")
@@ -80,13 +55,13 @@ struct AlbumTests {
             collectionName: "Test",
             artistName: "Artist",
             artistId: 2,
-            artworkURLString: "https://example.com/100x100bb.jpg"
+            artworkURL: URL(string: "https://example.com/100x100bb.jpg")
         )
 
         #expect(album.artworkLargeURL?.absoluteString == "https://example.com/600x600bb.jpg")
     }
 
-    @Test("artworkLargeURL returns nil when no string")
+    @Test("artworkLargeURL returns nil when no URL")
     func artworkLargeNil() {
         let album = Album(
             collectionId: 1,

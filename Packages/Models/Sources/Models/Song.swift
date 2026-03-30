@@ -17,8 +17,8 @@ public final class Song {
     public var discCount: Int
     public var trackCount: Int
     public var trackTimeMillis: Int?
-    public var previewURLString: String?
-    public var artworkURLString: String?
+    public var previewURL: URL?
+    public var artworkURL: URL?
     public var releaseDate: Date?
     public var genre: String?
     public var lastPlayedAt: Date?
@@ -36,8 +36,8 @@ public final class Song {
         discCount: Int = 1,
         trackCount: Int = 0,
         trackTimeMillis: Int? = nil,
-        previewURLString: String? = nil,
-        artworkURLString: String? = nil,
+        previewURL: URL? = nil,
+        artworkURL: URL? = nil,
         releaseDate: Date? = nil,
         genre: String? = nil,
         lastPlayedAt: Date? = nil,
@@ -54,8 +54,8 @@ public final class Song {
         self.discCount = discCount
         self.trackCount = trackCount
         self.trackTimeMillis = trackTimeMillis
-        self.previewURLString = previewURLString
-        self.artworkURLString = artworkURLString
+        self.previewURL = previewURL
+        self.artworkURL = artworkURL
         self.releaseDate = releaseDate
         self.genre = genre
         self.lastPlayedAt = lastPlayedAt
@@ -69,18 +69,8 @@ public final class Song {
         return TimeInterval(trackTimeMillis) / 1000.0
     }
 
-    public var previewURL: URL? {
-        guard let previewURLString else { return nil }
-        return URL(string: previewURLString)
-    }
-
-    public var artworkThumbnailURL: URL? {
-        guard let artworkURLString else { return nil }
-        return URL(string: artworkURLString)
-    }
-
     public var artworkLargeURL: URL? {
-        guard let artworkURLString else { return nil }
-        return ArtworkURLResolver.resolve(artworkURLString, size: 600)
+        guard let artworkURL else { return nil }
+        return ArtworkURLResolver.resolve(artworkURL, size: 600)
     }
 }

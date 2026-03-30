@@ -6,8 +6,8 @@ public enum ArtworkURLResolver {
     ///
     /// iTunes artwork URLs follow the pattern `https://…/100x100bb.jpg`.
     /// This method swaps `100x100` for the requested square dimension.
-    public static func resolve(_ urlString: String, size: Int) -> URL? {
-        let replaced = urlString.replacingOccurrences(
+    public static func resolve(_ url: URL, size: Int) -> URL? {
+        let replaced = url.absoluteString.replacingOccurrences(
             of: "100x100",
             with: "\(size)x\(size)"
         )

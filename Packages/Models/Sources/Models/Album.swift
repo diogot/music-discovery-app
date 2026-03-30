@@ -11,7 +11,7 @@ public final class Album {
     public var artistName: String
     public var artistId: Int
     public var trackCount: Int
-    public var artworkURLString: String?
+    public var artworkURL: URL?
     public var releaseDate: Date?
     public var genre: String?
     public var copyright: String?
@@ -22,7 +22,7 @@ public final class Album {
         artistName: String,
         artistId: Int,
         trackCount: Int = 0,
-        artworkURLString: String? = nil,
+        artworkURL: URL? = nil,
         releaseDate: Date? = nil,
         genre: String? = nil,
         copyright: String? = nil
@@ -32,7 +32,7 @@ public final class Album {
         self.artistName = artistName
         self.artistId = artistId
         self.trackCount = trackCount
-        self.artworkURLString = artworkURLString
+        self.artworkURL = artworkURL
         self.releaseDate = releaseDate
         self.genre = genre
         self.copyright = copyright
@@ -40,13 +40,8 @@ public final class Album {
 
     // MARK: - Computed Properties
 
-    public var artworkThumbnailURL: URL? {
-        guard let artworkURLString else { return nil }
-        return URL(string: artworkURLString)
-    }
-
     public var artworkLargeURL: URL? {
-        guard let artworkURLString else { return nil }
-        return ArtworkURLResolver.resolve(artworkURLString, size: 600)
+        guard let artworkURL else { return nil }
+        return ArtworkURLResolver.resolve(artworkURL, size: 600)
     }
 }

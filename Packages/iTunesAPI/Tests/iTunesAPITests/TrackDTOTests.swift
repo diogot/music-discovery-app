@@ -39,8 +39,8 @@ struct TrackDTOTests {
         #expect(track.discNumber == 1)
         #expect(track.discCount == 1)
         #expect(track.trackTimeMillis == 354947)
-        #expect(track.previewUrl == "https://example.com/preview.m4a")
-        #expect(track.artworkUrl100 == "https://example.com/artwork.jpg")
+        #expect(track.previewUrl == URL(string: "https://example.com/preview.m4a"))
+        #expect(track.artworkUrl100 == URL(string: "https://example.com/artwork.jpg"))
         #expect(track.releaseDate == "1975-10-31T07:00:00Z")
         #expect(track.primaryGenreName == "Rock")
     }
