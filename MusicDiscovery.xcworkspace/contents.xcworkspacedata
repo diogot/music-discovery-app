@@ -16,4 +16,7 @@
    <FileRef
       location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/NetworkService">
    </FileRef>
+   <FileRef
+      location = "group:MusicDiscovery.xctestplan">
+   </FileRef>
 </Workspace>

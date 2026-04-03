@@ -20,14 +20,16 @@ final class SongsViewModel {
     // MARK: - Private
 
     private let songRepository: any SongRepository
+    private let debounceInterval: Duration
     private var currentOffset = 0
     private let pageSize = 20
     private var searchTask: Task<Void, Never>?
 
     // MARK: - Init
 
-    init(songRepository: any SongRepository) {
+    init(songRepository: any SongRepository, debounceInterval: Duration = .milliseconds(300)) {
         self.songRepository = songRepository
+        self.debounceInterval = debounceInterval
     }
 
     // MARK: - Public
@@ -44,7 +46,7 @@ final class SongsViewModel {
         }
 
         searchTask = Task {
-            try? await Task.sleep(for: .milliseconds(300))
+            try? await Task.sleep(for: debounceInterval)
             guard !Task.isCancelled else { return }
             await performSearch(reset: true)
         }

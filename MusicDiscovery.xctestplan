@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "BBC80782-216E-4500-914B-7F5DDA596911",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MusicDiscovery.xcodeproj",
+      "identifier" : "D9E4DA052F7771250009A999",
+      "name" : "MusicDiscovery"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MusicDiscovery.xcodeproj",
+        "identifier" : "D9E4DA142F7771260009A999",
+        "name" : "MusicDiscoveryTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MusicDiscovery.xcodeproj",
+        "identifier" : "D9E4DA1E2F7771260009A999",
+        "name" : "MusicDiscoveryUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
