@@ -88,11 +88,10 @@ struct PlayerScreen: View {
                 Spacer(minLength: 16)
 
                 Button {
-                    // Repeat toggle
+                    nowPlayingManager.cycleRepeatMode()
                 } label: {
-                    Image(.Player.icRepeat)
-                        .renderingMode(.template)
-                        .foregroundStyle(Theme.Colors.textSecondary)
+                    repeatIcon
+                        .foregroundStyle(repeatColor)
                 }
                 .buttonStyle(.plain)
             }
@@ -203,6 +202,31 @@ struct PlayerScreen: View {
         guard duration.isFinite, duration > 0 else { return "-0:00" }
         let remaining = max(duration - current, 0)
         return "-\(formatTime(remaining))"
+    }
+
+    private var repeatColor: Color {
+        nowPlayingManager.repeatMode == .off
+            ? Theme.Colors.textSecondary
+            : Theme.Colors.accent
+    }
+
+    private var repeatIcon: some View {
+        let badge: String? = switch nowPlayingManager.repeatMode {
+        case .off: nil
+        case .all: "all"
+        case .one: "1"
+        }
+        return Image(.Player.icRepeat)
+            .renderingMode(.template)
+            .font(.system(size: 24))
+            .overlay(alignment: .topTrailing) {
+                if let badge {
+                    Text(badge)
+                        .font(.system(size: 11, weight: .black))
+                        .foregroundStyle(.white)
+                        .offset(x: 4, y: -4)
+                }
+            }
     }
 }
 

@@ -12,6 +12,9 @@ public final class AudioPlayer {
     public private(set) var currentTime: TimeInterval = 0
     public private(set) var duration: TimeInterval = 0
 
+    /// Called when the current item finishes playing (reaches end).
+    public var onPlaybackEnd: (@MainActor () -> Void)?
+
     // MARK: - Private
 
     private var player: AVPlayer?
@@ -72,6 +75,7 @@ public final class AudioPlayer {
                 guard let self else { return }
                 self.playbackState = .idle
                 self.currentTime = 0
+                self.onPlaybackEnd?()
             }
         }
     }

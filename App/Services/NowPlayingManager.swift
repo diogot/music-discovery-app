@@ -3,6 +3,12 @@ import Foundation
 import Models
 import Observation
 
+enum RepeatMode: CaseIterable {
+    case off
+    case all
+    case one
+}
+
 @Observable
 @MainActor
 final class NowPlayingManager {
@@ -12,6 +18,7 @@ final class NowPlayingManager {
     private(set) var currentSong: Song?
     private(set) var playlist: [Song] = []
     private(set) var currentIndex: Int = 0
+    var repeatMode: RepeatMode = .off
 
     let audioPlayer: AudioPlayer
 
@@ -24,6 +31,9 @@ final class NowPlayingManager {
     init(audioPlayer: AudioPlayer, songRepository: any SongRepository) {
         self.audioPlayer = audioPlayer
         self.songRepository = songRepository
+        audioPlayer.onPlaybackEnd = { [weak self] in
+            self?.handleSongEnd()
+        }
     }
 
     // MARK: - Playback
@@ -53,8 +63,12 @@ final class NowPlayingManager {
     }
 
     func forward() {
-        guard currentIndex + 1 < playlist.count else { return }
-        play(playlist[currentIndex + 1], from: playlist)
+        let nextIndex = currentIndex + 1
+        if nextIndex < playlist.count {
+            play(playlist[nextIndex], from: playlist)
+        } else if repeatMode == .all, !playlist.isEmpty {
+            play(playlist[0], from: playlist)
+        }
     }
 
     func backward() {
@@ -81,5 +95,34 @@ final class NowPlayingManager {
     func toggleLike() {
         guard let song = currentSong else { return }
         Task { try? await songRepository.toggleLike(song) }
+    }
+
+    func cycleRepeatMode() {
+        let modes = RepeatMode.allCases
+        guard let index = modes.firstIndex(of: repeatMode) else { return }
+        repeatMode = modes[(index + 1) % modes.count]
+    }
+
+    // MARK: - Private
+
+    private func handleSongEnd() {
+        switch repeatMode {
+        case .one:
+            if let url = currentSong?.previewURL {
+                audioPlayer.play(url: url)
+            }
+        case .all:
+            let nextIndex = currentIndex + 1
+            if nextIndex < playlist.count {
+                play(playlist[nextIndex], from: playlist)
+            } else if !playlist.isEmpty {
+                play(playlist[0], from: playlist)
+            }
+        case .off:
+            let nextIndex = currentIndex + 1
+            if nextIndex < playlist.count {
+                play(playlist[nextIndex], from: playlist)
+            }
+        }
     }
 }
