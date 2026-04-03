@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D9E4DA402F7771270009A999 /* AppCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9E4DA422F7771270009A999 /* AppCore */; };
+		D9E4DA412F7771270009A999 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D9E4DA432F7771270009A999 /* Models */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D9E4DA162F7771260009A999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E4DA402F7771270009A999 /* AppCore in Frameworks */,
+				D9E4DA412F7771270009A999 /* Models in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = MusicDiscovery;
 			packageProductDependencies = (
+				D9E4DA422F7771270009A999 /* AppCore */,
+				D9E4DA432F7771270009A999 /* Models */,
 			);
 			productName = MusicDiscovery;
 			productReference = D9E4DA062F7771250009A999 /* MusicDiscovery.app */;
@@ -400,6 +409,7 @@
 				DEVELOPMENT_TEAM = MQRRG9G4R7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +442,7 @@
 				DEVELOPMENT_TEAM = MQRRG9G4R7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -578,6 +589,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D9E4DA422F7771270009A999 /* AppCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppCore;
+		};
+		D9E4DA432F7771270009A999 /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D9E4D9FE2F7771250009A999 /* Project object */;
 }

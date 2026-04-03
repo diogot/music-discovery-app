@@ -1,23 +1,28 @@
-//
-//  MusicDiscoveryApp.swift
-//  MusicDiscovery
-//
-//  Created by Diogo on 27/03/26.
-//
-
-import SwiftUI
+import AppCore
+import Models
 import SwiftData
+import SwiftUI
 
 @main
 struct MusicDiscoveryApp: App {
+
+    @State private var audioPlayer = AudioPlayer()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Song.self,
+            Album.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -25,7 +30,8 @@ struct MusicDiscoveryApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRootView()
+                .environment(audioPlayer)
         }
         .modelContainer(sharedModelContainer)
     }
