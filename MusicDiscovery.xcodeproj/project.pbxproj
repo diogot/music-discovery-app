@@ -113,6 +113,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D975DA732F80554800972F0F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D9E4DA082F7771250009A999 /* App */,
@@ -204,6 +205,9 @@
 			);
 			mainGroup = D9E4D9FD2F7771250009A999;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D975DA712F80552200972F0F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9E4DA072F7771250009A999 /* Products */;
 			projectDirPath = "";
@@ -265,6 +269,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D975DA732F80554800972F0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D975DA722F80554800972F0F /* SwiftLintBuildToolPlugin */;
+		};
 		D9E4DA172F7771260009A999 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9E4DA052F7771250009A999 /* MusicDiscovery */;
@@ -592,7 +600,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		D975DA712F80552200972F0F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.63.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		D975DA722F80554800972F0F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D975DA712F80552200972F0F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		D9E4DA422F7771270009A999 /* AppCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppCore;

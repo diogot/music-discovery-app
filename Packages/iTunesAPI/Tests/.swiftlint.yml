@@ -1,0 +1,18 @@
+disabled_rules:
+  - trailing_comma
+
+type_name:
+  excluded:
+    - iTunesServiceTests
+
+identifier_name:
+  excluded:
+    - i
+
+line_length:
+  warning: 140
+  error: 200
+
+large_tuple:
+  warning: 4
+  error: 5

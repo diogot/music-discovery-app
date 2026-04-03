@@ -18,17 +18,23 @@ let package = Package(
             targets: ["TestUtils"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.58.0"),
+    ],
     targets: [
         .target(
-            name: "NetworkService"
+            name: "NetworkService",
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
         .target(
             name: "TestUtils",
-            dependencies: ["NetworkService"]
+            dependencies: ["NetworkService"],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
         .testTarget(
             name: "NetworkServiceTests",
-            dependencies: ["NetworkService", "TestUtils"]
+            dependencies: ["NetworkService", "TestUtils"],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
     ]
 )

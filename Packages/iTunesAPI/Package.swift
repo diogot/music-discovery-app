@@ -16,13 +16,15 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../NetworkService"),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.58.0"),
     ],
     targets: [
         .target(
             name: "iTunesAPI",
             dependencies: [
                 .product(name: "NetworkService", package: "NetworkService"),
-            ]
+            ],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
         .testTarget(
             name: "iTunesAPITests",
@@ -32,7 +34,8 @@ let package = Package(
             ],
             resources: [
                 .copy("Fixtures"),
-            ]
+            ],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
         ),
     ]
 )

@@ -11,6 +11,7 @@ enum PreviewHelpers {
     static var modelContainer: ModelContainer = {
         let schema = Schema([Song.self, Album.self])
         let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        // swiftlint:disable:next force_try
         return try! ModelContainer(for: schema, configurations: [config])
     }()
 

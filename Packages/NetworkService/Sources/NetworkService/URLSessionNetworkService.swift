@@ -44,7 +44,8 @@ public struct URLSessionNetworkService: NetworkService {
 
         do {
             (data, response) = try await session.data(for: urlRequest)
-        } catch let error as URLError where error.code == .notConnectedToInternet || error.code == .networkConnectionLost {
+        } catch let error as URLError
+            where error.code == .notConnectedToInternet || error.code == .networkConnectionLost {
             throw NetworkError.noInternet
         } catch {
             throw NetworkError.unknown(error)

@@ -26,11 +26,31 @@
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:MusicDiscovery.xcodeproj",
-        "identifier" : "D9E4DA1E2F7771260009A999",
-        "name" : "MusicDiscoveryUITests"
+        "containerPath" : "container:..\/..\/..\/..\/Volumes\/Macintosh HD\/Users\/diogo\/src\/music-discovery-app\/Packages\/Models",
+        "identifier" : "ModelsTests",
+        "name" : "ModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/..\/..\/..\/Volumes\/Macintosh HD\/Users\/diogo\/src\/music-discovery-app\/Packages\/NetworkService",
+        "identifier" : "NetworkServiceTests",
+        "name" : "NetworkServiceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/..\/..\/..\/Volumes\/Macintosh HD\/Users\/diogo\/src\/music-discovery-app\/Packages\/AppCore",
+        "identifier" : "AppCoreTests",
+        "name" : "AppCoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/..\/..\/..\/Volumes\/Macintosh HD\/Users\/diogo\/src\/music-discovery-app\/Packages\/iTunesAPI",
+        "identifier" : "iTunesAPITests",
+        "name" : "iTunesAPITests"
       }
     }
   ],
