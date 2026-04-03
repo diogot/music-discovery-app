@@ -10,6 +10,7 @@ enum AppDestination: Hashable {
 
 extension Array where Element == AppDestination {
 
+    @MainActor
     mutating func navigateToPlayer(
         playing song: Song,
         from playlist: [Song],

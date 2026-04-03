@@ -1,7 +1,6 @@
 import Foundation
 import Models
 
-@MainActor
 final class MockSongRepository: SongRepository {
 
     // MARK: - Configurable Results
@@ -18,29 +17,21 @@ final class MockSongRepository: SongRepository {
 
     // MARK: - SongRepository
 
-    nonisolated func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
-        try await MainActor.run {
-            searchSongsCalls.append((term: term, limit: limit, offset: offset))
-            return try searchSongsResult.get()
-        }
+    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
+        searchSongsCalls.append((term: term, limit: limit, offset: offset))
+        return try searchSongsResult.get()
     }
 
-    nonisolated func recentlyPlayedSongs(limit: Int) async -> [Song] {
-        await MainActor.run {
-            recentlyPlayedCalls.append(limit)
-            return recentlyPlayedResult
-        }
+    func recentlyPlayedSongs(limit: Int) async -> [Song] {
+        recentlyPlayedCalls.append(limit)
+        return recentlyPlayedResult
     }
 
-    nonisolated func markAsPlayed(_ song: Song) async throws {
-        await MainActor.run {
-            markAsPlayedCalls.append(song)
-        }
+    func markAsPlayed(_ song: Song) async throws {
+        markAsPlayedCalls.append(song)
     }
 
-    nonisolated func toggleLike(_ song: Song) async throws {
-        await MainActor.run {
-            toggleLikeCalls.append(song)
-        }
+    func toggleLike(_ song: Song) async throws {
+        toggleLikeCalls.append(song)
     }
 }

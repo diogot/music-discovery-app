@@ -3,8 +3,7 @@ import iTunesAPI
 import Models
 import SwiftData
 
-@MainActor
-public final class SwiftDataAlbumRepository: @preconcurrency AlbumRepository {
+public final class SwiftDataAlbumRepository: AlbumRepository {
 
     private let iTunesService: any iTunesService
     private let modelContext: ModelContext

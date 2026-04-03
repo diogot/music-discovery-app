@@ -1,7 +1,6 @@
 import Foundation
 import Models
 
-@MainActor
 final class MockAlbumRepository: AlbumRepository {
 
     // MARK: - Configurable Results
@@ -14,17 +13,15 @@ final class MockAlbumRepository: AlbumRepository {
 
     // MARK: - AlbumRepository
 
-    nonisolated func fetchAlbum(collectionId: Int) async throws -> AlbumWithTracks {
-        try await MainActor.run {
-            fetchAlbumCalls.append(collectionId)
-            guard let result = fetchAlbumResult else {
-                fatalError("fetchAlbumResult not configured")
-            }
-            return try result.get()
+    func fetchAlbum(collectionId: Int) async throws -> AlbumWithTracks {
+        fetchAlbumCalls.append(collectionId)
+        guard let result = fetchAlbumResult else {
+            fatalError("fetchAlbumResult not configured")
         }
+        return try result.get()
     }
 
-    nonisolated func album(byCollectionId collectionId: Int) async -> Album? {
+    func album(byCollectionId collectionId: Int) async -> Album? {
         nil
     }
 }

@@ -5,6 +5,7 @@ import SwiftUI
 
 // MARK: - Preview Model Container
 
+@MainActor
 enum PreviewHelpers {
 
     @MainActor
@@ -163,36 +164,32 @@ enum PreviewHelpers {
 
 // MARK: - Mock Song Repository
 
-@MainActor
 private final class MockPreviewSongRepository: SongRepository {
 
-    nonisolated func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
-        await MainActor.run { PreviewHelpers.sampleSongs() }
+    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
+        PreviewHelpers.sampleSongs()
     }
 
-    nonisolated func recentlyPlayedSongs(limit: Int) async -> [Song] {
-        await MainActor.run { PreviewHelpers.sampleSongs() }
+    func recentlyPlayedSongs(limit: Int) async -> [Song] {
+        PreviewHelpers.sampleSongs()
     }
 
-    nonisolated func markAsPlayed(_ song: Song) async throws {}
-    nonisolated func toggleLike(_ song: Song) async throws {}
+    func markAsPlayed(_ song: Song) async throws {}
+    func toggleLike(_ song: Song) async throws {}
 }
 
 // MARK: - Mock Album Repository
 
-@MainActor
 private final class MockPreviewAlbumRepository: AlbumRepository {
 
-    nonisolated func fetchAlbum(collectionId: Int) async throws -> AlbumWithTracks {
-        await MainActor.run {
-            AlbumWithTracks(
-                album: PreviewHelpers.sampleAlbum(),
-                tracks: PreviewHelpers.sampleAlbumTracks()
-            )
-        }
+    func fetchAlbum(collectionId: Int) async throws -> AlbumWithTracks {
+        AlbumWithTracks(
+            album: PreviewHelpers.sampleAlbum(),
+            tracks: PreviewHelpers.sampleAlbumTracks()
+        )
     }
 
-    nonisolated func album(byCollectionId collectionId: Int) async -> Album? {
-        await MainActor.run { PreviewHelpers.sampleAlbum() }
+    func album(byCollectionId collectionId: Int) async -> Album? {
+        PreviewHelpers.sampleAlbum()
     }
 }

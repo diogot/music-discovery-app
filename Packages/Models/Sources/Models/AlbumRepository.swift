@@ -1,3 +1,4 @@
+@MainActor
 public protocol AlbumRepository: Sendable {
 
     /// Fetch album details and its tracks (from network or cache).

@@ -1,4 +1,5 @@
-public protocol SongRepository: Sendable {
+@MainActor
+public protocol SongRepository {
 
     /// Search songs by term with pagination.
     func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song]
