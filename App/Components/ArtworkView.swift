@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct ArtworkView: View {
@@ -7,22 +8,12 @@ struct ArtworkView: View {
     var cornerRadius: CGFloat = Theme.Sizing.artworkCornerRadius
 
     var body: some View {
-        AsyncImage(url: url) { phase in
-            switch phase {
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            case .failure:
-                placeholder
-            case .empty:
-                placeholder
-            @unknown default:
-                placeholder
-            }
-        }
-        .frame(width: size, height: size)
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        KFImage(url)
+            .placeholder { placeholder }
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: size, height: size)
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
 
     private var placeholder: some View {

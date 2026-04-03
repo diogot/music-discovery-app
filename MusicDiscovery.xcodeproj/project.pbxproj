@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D975DA762F80878F00972F0F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D975DA752F80878F00972F0F /* Kingfisher */; };
 		D9E4DA402F7771270009A999 /* AppCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9E4DA422F7771270009A999 /* AppCore */; };
 		D9E4DA412F7771270009A999 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D9E4DA432F7771270009A999 /* Models */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D975DA762F80878F00972F0F /* Kingfisher in Frameworks */,
 				D9E4DA402F7771270009A999 /* AppCore in Frameworks */,
 				D9E4DA412F7771270009A999 /* Models in Frameworks */,
 			);
@@ -122,6 +124,7 @@
 			packageProductDependencies = (
 				D9E4DA422F7771270009A999 /* AppCore */,
 				D9E4DA432F7771270009A999 /* Models */,
+				D975DA752F80878F00972F0F /* Kingfisher */,
 			);
 			productName = MusicDiscovery;
 			productReference = D9E4DA062F7771250009A999 /* MusicDiscovery.app */;
@@ -207,6 +210,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D975DA712F80552200972F0F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				D975DA742F80878F00972F0F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D9E4DA072F7771250009A999 /* Products */;
@@ -589,6 +593,14 @@
 				minimumVersion = 0.63.2;
 			};
 		};
+		D975DA742F80878F00972F0F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -596,6 +608,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D975DA712F80552200972F0F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		D975DA752F80878F00972F0F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D975DA742F80878F00972F0F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		D9E4DA422F7771270009A999 /* AppCore */ = {
 			isa = XCSwiftPackageProductDependency;
