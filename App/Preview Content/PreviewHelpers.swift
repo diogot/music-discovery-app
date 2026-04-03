@@ -170,6 +170,10 @@ private final class MockPreviewSongRepository: SongRepository {
         PreviewHelpers.sampleSongs()
     }
 
+    func searchLocalSongs(term: String, limit: Int, offset: Int) async -> [Song] {
+        PreviewHelpers.sampleSongs()
+    }
+
     func recentlyPlayedSongs(limit: Int) async -> [Song] {
         PreviewHelpers.sampleSongs()
     }

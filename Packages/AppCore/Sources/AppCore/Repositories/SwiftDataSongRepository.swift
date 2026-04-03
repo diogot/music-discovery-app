@@ -18,6 +18,19 @@ public final class SwiftDataSongRepository: SongRepository {
         return try SongUpserter.upsert(dtos, in: modelContext)
     }
 
+    public func searchLocalSongs(term: String, limit: Int, offset: Int) async -> [Song] {
+        var descriptor = FetchDescriptor<Song>(
+            predicate: #Predicate<Song> { song in
+                song.trackName.localizedStandardContains(term) ||
+                song.artistName.localizedStandardContains(term)
+            },
+            sortBy: [SortDescriptor(\.trackName)]
+        )
+        descriptor.fetchLimit = limit
+        descriptor.fetchOffset = offset
+        return (try? modelContext.fetch(descriptor)) ?? []
+    }
+
     public func recentlyPlayedSongs(limit: Int) async -> [Song] {
         var descriptor = FetchDescriptor<Song>(
             predicate: #Predicate { $0.lastPlayedAt != nil },

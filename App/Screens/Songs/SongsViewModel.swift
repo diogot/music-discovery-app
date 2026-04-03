@@ -1,5 +1,6 @@
 import Foundation
 import Models
+import NetworkService
 import Observation
 
 @Observable
@@ -104,6 +105,20 @@ final class SongsViewModel {
             }
             currentOffset += results.count
             hasMoreResults = results.count >= pageSize
+        } catch let networkError as NetworkError where networkError == .noInternet {
+            if reset {
+                let localResults = await songRepository.searchLocalSongs(
+                    term: searchText,
+                    limit: pageSize,
+                    offset: 0
+                )
+                songs = localResults
+                currentOffset = localResults.count
+                hasMoreResults = localResults.count >= pageSize
+            }
+            if !Task.isCancelled {
+                self.error = networkError
+            }
         } catch {
             if !Task.isCancelled {
                 self.error = error

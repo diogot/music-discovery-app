@@ -1,5 +1,6 @@
 import Foundation
 import Models
+import NetworkService
 import Testing
 @testable import MusicDiscovery
 
@@ -142,6 +143,47 @@ struct SongsViewModelTests {
         #expect(mock.searchSongsCalls.count == 2)
         #expect(mock.searchSongsCalls[1].offset == 20)
     }
+
+    // MARK: - Offline Fallback
+
+    @Test("noInternet on reset falls back to local search")
+    func noInternetOnResetFallsBackToLocalSearch() async {
+        mock.searchSongsResult = .failure(NetworkError.noInternet)
+        let cached = [makeSong(trackId: 50, trackName: "Cached")]
+        mock.searchLocalSongsResult = cached
+        viewModel.searchText = "query"
+
+        await viewModel.refresh()
+
+        #expect(viewModel.songs.count == 1)
+        #expect(viewModel.songs[0].trackId == 50)
+        #expect(mock.searchLocalSongsCalls.count == 1)
+        #expect(mock.searchLocalSongsCalls[0].term == "query")
+        #expect(viewModel.error != nil)
+    }
+
+    @Test("noInternet replaces existing songs with local results on reset")
+    func noInternetReplacesExistingSongsWithLocalResults() async {
+        // Load initial results
+        let initial = [makeSong(trackId: 1)]
+        mock.searchSongsResult = .success(initial)
+        viewModel.searchText = "query"
+        await viewModel.refresh()
+        #expect(viewModel.songs.count == 1)
+
+        // Now simulate offline — local search replaces old results
+        mock.searchSongsResult = .failure(NetworkError.noInternet)
+        mock.searchLocalSongsResult = [makeSong(trackId: 99)]
+
+        await viewModel.refresh()
+
+        #expect(mock.searchLocalSongsCalls.count == 1)
+        #expect(viewModel.songs.count == 1)
+        #expect(viewModel.songs[0].trackId == 99)
+        #expect(viewModel.error != nil)
+    }
+
+    // MARK: - Pagination (continued)
 
     @Test("loadMoreIfNeeded ignores non-last song")
     func loadMoreIfNeededIgnoresNonLastSong() async {
