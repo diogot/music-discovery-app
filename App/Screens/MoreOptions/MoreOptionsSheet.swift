@@ -58,7 +58,7 @@ struct MoreOptionsSheet: View {
                     .foregroundStyle(Theme.Colors.textPrimary)
                     .frame(width: 24, height: 24)
 
-                Text("View album")
+                Text(.moreOptionsViewAlbumButton)
                     .font(Theme.Fonts.text(16))
                     .foregroundStyle(Theme.Colors.textPrimary)
 

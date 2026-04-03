@@ -27,7 +27,7 @@ struct SongsScreen: View {
             }
         }
         .background(Theme.Colors.background)
-        .navigationTitle("Songs")
+        .navigationTitle(.songsNavigationTitle)
         .searchable(
             text: Binding(
                 get: { viewModel.searchText },
@@ -36,7 +36,7 @@ struct SongsScreen: View {
                     viewModel.searchTextChanged()
                 }
             ),
-            prompt: "Search"
+            prompt: .songsSearchPrompt
         )
         .refreshable {
             await viewModel.refresh()
@@ -109,14 +109,14 @@ struct SongsScreen: View {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 40))
                 .foregroundStyle(Theme.Colors.textTertiary)
-            Text("Something went wrong")
+            Text(.songsErrorTitle)
                 .font(Theme.Fonts.display(18))
                 .foregroundStyle(Theme.Colors.textPrimary)
             Text(error.localizedDescription)
                 .font(Theme.Fonts.text(14))
                 .foregroundStyle(Theme.Colors.textSecondary)
                 .multilineTextAlignment(.center)
-            Button("Retry") {
+            Button(.commonRetryButton) {
                 viewModel.searchTextChanged()
             }
             .font(Theme.Fonts.text(16))
@@ -133,12 +133,16 @@ struct SongsScreen: View {
             Image(systemName: "music.note.list")
                 .font(.system(size: 40))
                 .foregroundStyle(Theme.Colors.textTertiary)
-            Text(viewModel.isSearchActive
-                 ? "No results for \"\(viewModel.searchText)\""
-                 : "Search for songs to get started")
-                .font(Theme.Fonts.text(16))
-                .foregroundStyle(Theme.Colors.textSecondary)
-                .multilineTextAlignment(.center)
+            Group {
+                if viewModel.isSearchActive {
+                    Text(.songsNoResultsMessage(viewModel.searchText))
+                } else {
+                    Text(.songsEmptyMessage)
+                }
+            }
+            .font(Theme.Fonts.text(16))
+            .foregroundStyle(Theme.Colors.textSecondary)
+            .multilineTextAlignment(.center)
             Spacer()
         }
         .padding(.horizontal, 24)

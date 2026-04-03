@@ -131,14 +131,14 @@ struct AlbumScreen: View {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 40))
                 .foregroundStyle(Theme.Colors.textTertiary)
-            Text("Could not load album")
+            Text(.albumErrorTitle)
                 .font(Theme.Fonts.display(18))
                 .foregroundStyle(Theme.Colors.textPrimary)
             Text(error.localizedDescription)
                 .font(Theme.Fonts.text(14))
                 .foregroundStyle(Theme.Colors.textSecondary)
                 .multilineTextAlignment(.center)
-            Button("Retry") {
+            Button(.commonRetryButton) {
                 viewModel.loadAlbum(collectionId: collectionId)
             }
             .font(Theme.Fonts.text(16))

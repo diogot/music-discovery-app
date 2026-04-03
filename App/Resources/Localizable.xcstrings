@@ -1,0 +1,102 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "album.errorTitle" : {
+      "comment" : "Error title shown when album data fails to load",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not load album"
+          }
+        }
+      }
+    },
+    "common.retryButton" : {
+      "comment" : "Button label to retry a failed network request",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
+    "moreOptions.viewAlbumButton" : {
+      "comment" : "Action button in the more options sheet to navigate to the album",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View album"
+          }
+        }
+      }
+    },
+    "songs.emptyMessage" : {
+      "comment" : "Empty state message shown before the user searches",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for songs to get started"
+          }
+        }
+      }
+    },
+    "songs.errorTitle" : {
+      "comment" : "Generic error title on the songs screen",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong"
+          }
+        }
+      }
+    },
+    "songs.navigationTitle" : {
+      "comment" : "Navigation title for the main songs screen",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Songs"
+          }
+        }
+      }
+    },
+    "songs.noResultsMessage %@" : {
+      "comment" : "Empty state message when search returns no songs; %@ is the search query",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No results for \"%@\""
+          }
+        }
+      }
+    },
+    "songs.searchPrompt" : {
+      "comment" : "Placeholder text in the songs search bar",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.2"
+}
