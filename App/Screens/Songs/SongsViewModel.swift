@@ -22,7 +22,6 @@ final class SongsViewModel {
 
     private let songRepository: any SongRepository
     private let debounceInterval: Duration
-    private var currentOffset = 0
     private let pageSize = 20
     private var searchTask: Task<Void, Never>?
 
@@ -40,7 +39,6 @@ final class SongsViewModel {
         error = nil
 
         if searchText.isEmpty {
-            currentOffset = 0
             hasMoreResults = true
             loadRecentlyPlayed()
             return
@@ -68,6 +66,7 @@ final class SongsViewModel {
               currentSong.trackId == songs.last?.trackId else {
             return
         }
+        isLoadingMore = true
         Task { await performSearch(reset: false) }
     }
 
@@ -83,28 +82,19 @@ final class SongsViewModel {
     // MARK: - Private
 
     private func performSearch(reset: Bool) async {
+        let limit = reset ? pageSize : songs.count + pageSize
         if reset {
-            currentOffset = 0
             isLoading = true
-        } else {
-            isLoadingMore = true
         }
         error = nil
 
         do {
             let results = try await songRepository.searchSongs(
                 term: searchText,
-                limit: pageSize,
-                offset: currentOffset
+                limit: limit
             )
-
-            if reset {
-                songs = results
-            } else {
-                songs.append(contentsOf: results)
-            }
-            currentOffset += results.count
-            hasMoreResults = results.count >= pageSize
+            songs = results
+            hasMoreResults = results.count >= limit
         } catch let networkError as NetworkError where networkError == .noInternet {
             if reset {
                 let localResults = await songRepository.searchLocalSongs(
@@ -113,8 +103,7 @@ final class SongsViewModel {
                     offset: 0
                 )
                 songs = localResults
-                currentOffset = localResults.count
-                hasMoreResults = localResults.count >= pageSize
+                hasMoreResults = false
             }
             if !Task.isCancelled {
                 self.error = networkError

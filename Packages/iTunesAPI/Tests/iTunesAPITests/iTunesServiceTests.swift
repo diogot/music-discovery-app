@@ -20,7 +20,7 @@ struct iTunesServiceTests {
         )
         mock.setResponse(try Data(contentsOf: fixtureURL))
 
-        let tracks = try await service.searchSongs(term: "Queen", limit: 25, offset: 0)
+        let tracks = try await service.searchSongs(term: "Queen", limit: 25)
 
         #expect(tracks.count == 2)
         #expect(tracks[0].trackName == "Bohemian Rhapsody")
@@ -35,13 +35,12 @@ struct iTunesServiceTests {
         )
         mock.setResponse(try Data(contentsOf: fixtureURL))
 
-        _ = try await service.searchSongs(term: "Queen", limit: 25, offset: 10)
+        _ = try await service.searchSongs(term: "Queen", limit: 25)
 
         let request = try #require(mock.executedRequests.first)
         #expect(request.path == "/search")
         #expect(request.queryItems["term"] == "Queen")
         #expect(request.queryItems["limit"] == "25")
-        #expect(request.queryItems["offset"] == "10")
     }
 
     @Test("searchSongs with empty results returns empty array")
@@ -52,7 +51,7 @@ struct iTunesServiceTests {
         """
         mock.setResponse(Data(json.utf8))
 
-        let tracks = try await service.searchSongs(term: "xyznonexistent", limit: 25, offset: 0)
+        let tracks = try await service.searchSongs(term: "xyznonexistent", limit: 25)
 
         #expect(tracks.isEmpty)
     }
@@ -63,7 +62,7 @@ struct iTunesServiceTests {
         mock.setError(.noInternet)
 
         await #expect(throws: NetworkError.noInternet) {
-            _ = try await service.searchSongs(term: "Queen", limit: 25, offset: 0)
+            _ = try await service.searchSongs(term: "Queen", limit: 25)
         }
     }
 

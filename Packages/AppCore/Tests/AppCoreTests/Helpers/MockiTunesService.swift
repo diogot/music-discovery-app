@@ -5,11 +5,11 @@ final class MockiTunesService: iTunesService, @unchecked Sendable {
     var searchSongsResult: Result<[TrackDTO], Error> = .success([])
     var lookupAlbumResult: Result<AlbumLookupResult, Error>?
 
-    private(set) var searchSongsCalls: [(term: String, limit: Int, offset: Int)] = []
+    private(set) var searchSongsCalls: [(term: String, limit: Int)] = []
     private(set) var lookupAlbumCalls: [Int] = []
 
-    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [TrackDTO] {
-        searchSongsCalls.append((term, limit, offset))
+    func searchSongs(term: String, limit: Int) async throws -> [TrackDTO] {
+        searchSongsCalls.append((term, limit))
         return try searchSongsResult.get()
     }
 

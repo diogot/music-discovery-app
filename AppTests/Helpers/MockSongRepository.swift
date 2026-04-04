@@ -11,7 +11,7 @@ final class MockSongRepository: SongRepository {
 
     // MARK: - Call Tracking
 
-    private(set) var searchSongsCalls: [(term: String, limit: Int, offset: Int)] = []
+    private(set) var searchSongsCalls: [(term: String, limit: Int)] = []
     private(set) var searchLocalSongsCalls: [(term: String, limit: Int, offset: Int)] = []
     private(set) var recentlyPlayedCalls: [Int] = []
     private(set) var markAsPlayedCalls: [Song] = []
@@ -19,8 +19,8 @@ final class MockSongRepository: SongRepository {
 
     // MARK: - SongRepository
 
-    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
-        searchSongsCalls.append((term: term, limit: limit, offset: offset))
+    func searchSongs(term: String, limit: Int) async throws -> [Song] {
+        searchSongsCalls.append((term: term, limit: limit))
         return try searchSongsResult.get()
     }
 

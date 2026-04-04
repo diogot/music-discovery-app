@@ -131,9 +131,9 @@ struct SongsViewModelTests {
         viewModel.searchText = "query"
         await viewModel.refresh()
 
-        // Set up second page
-        let secondPage = [makeSong(trackId: 21)]
-        mock.searchSongsResult = .success(secondPage)
+        // Set up expanded results (first 20 + 1 new = 21 total)
+        let expandedResults = (1...21).map { makeSong(trackId: $0) }
+        mock.searchSongsResult = .success(expandedResults)
 
         // Trigger load more with the last song
         viewModel.loadMoreIfNeeded(currentSong: viewModel.songs.last!)
@@ -141,7 +141,7 @@ struct SongsViewModelTests {
 
         #expect(viewModel.songs.count == 21)
         #expect(mock.searchSongsCalls.count == 2)
-        #expect(mock.searchSongsCalls[1].offset == 20)
+        #expect(mock.searchSongsCalls[1].limit == 40)
     }
 
     // MARK: - Offline Fallback

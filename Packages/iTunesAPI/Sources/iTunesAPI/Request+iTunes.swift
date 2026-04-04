@@ -1,7 +1,7 @@
 import NetworkService
 
 extension Request {
-    static func searchSongs(term: String, limit: Int, offset: Int) -> Request {
+    static func searchSongs(term: String, limit: Int) -> Request {
         Request(
             path: "/search",
             queryItems: [
@@ -9,7 +9,6 @@ extension Request {
                 "media": "music",
                 "entity": "song",
                 "limit": String(limit),
-                "offset": String(offset),
             ]
         )
     }

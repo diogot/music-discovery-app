@@ -166,7 +166,7 @@ enum PreviewHelpers {
 
 private final class MockPreviewSongRepository: SongRepository {
 
-    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
+    func searchSongs(term: String, limit: Int) async throws -> [Song] {
         PreviewHelpers.sampleSongs()
     }
 

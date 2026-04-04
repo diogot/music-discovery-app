@@ -32,7 +32,7 @@ struct SwiftDataSongRepositoryTests {
             makeTrackDTO(trackId: 2, trackName: "Song 2"),
         ])
 
-        let songs = try await repository.searchSongs(term: "test", limit: 10, offset: 0)
+        let songs = try await repository.searchSongs(term: "test", limit: 10)
 
         #expect(songs.count == 2)
         #expect(songs[0].trackId == 1)
@@ -45,12 +45,11 @@ struct SwiftDataSongRepositoryTests {
     func searchSongsPassesParams() async throws {
         mock.searchSongsResult = .success([])
 
-        _ = try await repository.searchSongs(term: "hello", limit: 25, offset: 50)
+        _ = try await repository.searchSongs(term: "hello", limit: 25)
 
         let call = try #require(mock.searchSongsCalls.first)
         #expect(call.term == "hello")
         #expect(call.limit == 25)
-        #expect(call.offset == 50)
     }
 
     @Test("searchSongs upserts existing songs preserving isLiked")
@@ -71,7 +70,7 @@ struct SwiftDataSongRepositoryTests {
             makeTrackDTO(trackId: 1, trackName: "New Name"),
         ])
 
-        let songs = try await repository.searchSongs(term: "test", limit: 10, offset: 0)
+        let songs = try await repository.searchSongs(term: "test", limit: 10)
 
         #expect(songs.count == 1)
         #expect(songs[0].trackName == "New Name")
@@ -97,7 +96,7 @@ struct SwiftDataSongRepositoryTests {
             makeTrackDTO(trackId: 1, trackName: "Updated"),
         ])
 
-        let songs = try await repository.searchSongs(term: "test", limit: 10, offset: 0)
+        let songs = try await repository.searchSongs(term: "test", limit: 10)
 
         #expect(songs[0].trackName == "Updated")
         #expect(songs[0].lastPlayedAt == playedDate)
@@ -109,7 +108,7 @@ struct SwiftDataSongRepositoryTests {
             makeTrackDTO(trackId: 99, trackName: "Brand New"),
         ])
 
-        let songs = try await repository.searchSongs(term: "test", limit: 10, offset: 0)
+        let songs = try await repository.searchSongs(term: "test", limit: 10)
 
         #expect(songs.count == 1)
         #expect(songs[0].trackId == 99)
@@ -124,7 +123,7 @@ struct SwiftDataSongRepositoryTests {
         mock.searchSongsResult = .failure(URLError(.notConnectedToInternet))
 
         await #expect(throws: URLError.self) {
-            _ = try await repository.searchSongs(term: "test", limit: 10, offset: 0)
+            _ = try await repository.searchSongs(term: "test", limit: 10)
         }
     }
 

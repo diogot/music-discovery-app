@@ -1,7 +1,7 @@
 import NetworkService
 
 public protocol iTunesService: Sendable {
-    func searchSongs(term: String, limit: Int, offset: Int) async throws -> [TrackDTO]
+    func searchSongs(term: String, limit: Int) async throws -> [TrackDTO]
     func lookupAlbum(collectionId: Int) async throws -> AlbumLookupResult
 }
 
@@ -26,8 +26,8 @@ public struct LiveiTunesService: iTunesService {
         self.networkService = networkService
     }
 
-    public func searchSongs(term: String, limit: Int, offset: Int) async throws -> [TrackDTO] {
-        let request = Request.searchSongs(term: term, limit: limit, offset: offset)
+    public func searchSongs(term: String, limit: Int) async throws -> [TrackDTO] {
+        let request = Request.searchSongs(term: term, limit: limit)
         let response: iTunesSearchResponse<TrackDTO> = try await networkService.execute(request)
         return response.results
     }

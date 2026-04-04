@@ -13,8 +13,8 @@ public final class SwiftDataSongRepository: SongRepository {
         self.modelContext = modelContext
     }
 
-    public func searchSongs(term: String, limit: Int, offset: Int) async throws -> [Song] {
-        let dtos = try await iTunesService.searchSongs(term: term, limit: limit, offset: offset)
+    public func searchSongs(term: String, limit: Int) async throws -> [Song] {
+        let dtos = try await iTunesService.searchSongs(term: term, limit: limit)
         return try SongUpserter.upsert(dtos, in: modelContext)
     }
 
