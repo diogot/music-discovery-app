@@ -5,16 +5,16 @@
       location = "container:MusicDiscovery.xcodeproj">
    </FileRef>
    <FileRef
-      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/AppCore">
+      location = "group:Packages/AppCore">
    </FileRef>
    <FileRef
-      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/Models">
+      location = "group:Packages/Models">
    </FileRef>
    <FileRef
-      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/iTunesAPI">
+      location = "group:Packages/iTunesAPI">
    </FileRef>
    <FileRef
-      location = "absolute:/Volumes/Macintosh HD/Users/diogo/src/music-discovery-app/Packages/NetworkService">
+      location = "group:Packages/NetworkService">
    </FileRef>
    <FileRef
       location = "group:MusicDiscovery.xctestplan">
