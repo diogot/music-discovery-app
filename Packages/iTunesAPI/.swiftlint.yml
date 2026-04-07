@@ -5,6 +5,12 @@ excluded:
 disabled_rules:
   - trailing_comma
 
+type_name:
+  excluded:
+    - iTunesService
+    - iTunesServiceError
+    - iTunesSearchResponse
+
 function_body_length:
   warning: 80
   error: 200
